@@ -1,0 +1,14 @@
+balance_checker:
+  class: 'BalanceChecker'
+  args: ['KBank', ENV['KBANK_TOKEN'], ENV['KBANK_PRIVATE_KEY'], ENV['KBANK_PASSPHRASE']]
+  cron: '0 0 * * * Asia/Bangkok'
+
+#        * * * * *
+#        - - - - -
+#        | | | | |
+#        | | | | ----- Day of week (0 - 7) (Sunday=0 or 7)
+#        | | | ------- Month (1 - 12)
+#        | | --------- Day of month (1 - 31)
+#        | ----------- Hour (0 - 23)
+#        ------------- Minute (0 - 59)
+
