@@ -16,6 +16,8 @@ require './services/balance_checker'
 require 'resque/tasks'
 require 'resque/scheduler/tasks'
 
+$redis = Redis.new(url: ENV["REDIS_URL"])
+
 task :console do
   require 'irb'
   require 'irb/completion'

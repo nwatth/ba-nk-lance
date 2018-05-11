@@ -9,8 +9,13 @@ class BalanceChecker < Struct.new(:bank_name, :token, :pkey, :passphrase)
 
   def perform
     bank.process!
+    balance_diff = bank.balance.to_f - $redis.get(bank_name).to_f
 
-    LineNotify.notify message: "#{Time.now} - #{bank_name} balance is #{bank.balance}."
+    if balance_diff != 0
+      LineNotify.notify message: "#{bank_name}\ntransaction value is #{balance_diff}\nbalance is #{bank.balance} THB"
+
+      $redis.set bank_name, bank.balance.to_f
+    end
   end
 
   private
