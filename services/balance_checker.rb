@@ -20,23 +20,23 @@ class BalanceChecker < Struct.new(:bank_name, :token, :pkey, :passphrase)
 
   private
 
-    def bank
-      @bank ||= Object.const_get(bank_name).new username, password
-    end
+  def bank
+    @bank ||= Object.const_get(bank_name).new username, password
+  end
 
-    def decrypted_token
-      @decrypted_token ||= private_key.private_decrypt(Base64.decode64 token)
-    end
+  def decrypted_token
+    @decrypted_token ||= private_key.private_decrypt(Base64.decode64 token)
+  end
 
-    def private_key
-      @private_key ||= OpenSSL::PKey::RSA.new(pkey, passphrase)
-    end
+  def private_key
+    @private_key ||= OpenSSL::PKey::RSA.new(pkey, passphrase)
+  end
 
-    def username
-      @username ||= decrypted_token.split(SPLITER)[0]
-    end
+  def username
+    @username ||= decrypted_token.split(SPLITER)[0]
+  end
 
-    def password
-      @password ||= decrypted_token.split(SPLITER)[1]
-    end
+  def password
+    @password ||= decrypted_token.split(SPLITER)[1]
+  end
 end
