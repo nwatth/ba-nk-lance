@@ -1,5 +1,6 @@
 require 'rubygems'
 require 'bundler/setup'
+require 'erb'
 require 'yaml'
 require 'phantomjs'
 require 'capybara/poltergeist'
