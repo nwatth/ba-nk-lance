@@ -16,7 +16,7 @@ require './services/balance_checker'
 require 'resque/tasks'
 require 'resque/scheduler/tasks'
 
-$redis = Redis.new(url: ENV["REDIS_URL"])
+$redis = Redis.new(url: ENV["REDIS_URL_0"])
 
 task :console do
   require 'irb'
@@ -30,10 +30,10 @@ namespace :resque do
     require 'resque'
 
     p '===== REDIS URL ====='
-    p ENV["REDIS_URL"]
+    p ENV["REDIS_URL_1"]
 
     # you probably already have this somewhere
-    Resque.redis = ENV["REDIS_URL"]
+    Resque.redis = ENV["REDIS_URL_1"]
   end
 
   task :setup_schedule => :setup do
