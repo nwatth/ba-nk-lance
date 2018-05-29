@@ -33,7 +33,7 @@ namespace :resque do
     p ENV["REDIS_URL_1"]
 
     # you probably already have this somewhere
-    Resque.redis = ENV["REDIS_URL_1"]
+    Resque.redis = Redis.new(url: ENV["REDIS_URL_1"])
   end
 
   task :setup_schedule => :setup do
